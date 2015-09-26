@@ -1,7 +1,13 @@
 package org.toolboxbodensee.iamdrunk;
 
+import android.app.Activity;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +16,23 @@ import android.widget.Button;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GeradeLaufenMinispielActivity extends ActionBarActivity {
+public class GeradeLaufenMinispielActivity extends Activity implements SensorEventListener {
+
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    float ValueX;
+    float ValueY;
+    float ValueZ;
+
+    public void onSensorChanged(SensorEvent event) {
+        ValueX = event.values[0];
+        ValueY = event.values[1];
+        ValueZ = event.values[2];
+
+    }
+
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +45,9 @@ public class GeradeLaufenMinispielActivity extends ActionBarActivity {
                 startgame();
             }
         });
+        mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
     }
 
     void startgame()
@@ -30,18 +55,22 @@ public class GeradeLaufenMinispielActivity extends ActionBarActivity {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             int time = 0;
+
             @Override
             public void run() {
-                time++;
+                time+= 100;
                 measure(time);
             }
-        }, 250, 250);
+        }, 100, 100);
     }
 
 
     void measure(int time)
     {
-
+        Log.d("Game", "Time is: " + time);
+        Log.d("Game", "X: " + ValueX);
+        Log.d("Game", "Y: " + ValueY);
+        Log.d("Game", "Z: " + ValueZ);
     }
 
     @Override
