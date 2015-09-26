@@ -97,7 +97,7 @@ public class Toiletenfinden extends Activity implements LocationListener{
 
                 Log.e("dsds", lang+","+longi);
                // Toast.makeText(getApplicationContext(), y_koord[0]+","+y_koord[1], Toast.LENGTH_SHORT).show();
-                String url = "https://www.google.de/maps/@"+koord[position]+",15z?hl=de";
+                String url = "https://www.google.de/maps/@"+koord[position]+",20z?hl=de";
                 Log.e("URL", url);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
