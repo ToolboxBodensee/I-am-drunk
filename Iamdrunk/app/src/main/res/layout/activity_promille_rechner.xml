@@ -6,7 +6,332 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="org.toolboxbodensee.iamdrunk.PromilleRechnerActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/promille_ergebnis"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Berechnen"
+        android:id="@+id/promille_berechnen"
+        android:layout_above="@+id/promille_ergebnis"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alkoholgehalt(%)"
+                android:id="@+id/alkoholgehalt_label"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/alkoholgehalt_input"
+                android:text="0.0"
+                android:layout_column="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Größe des Getränks(L)"
+                android:id="@+id/menge_label"
+                android:layout_column="3" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/menge_input"
+                android:layout_column="4"
+                android:text="0.0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anzahl"
+                android:id="@+id/anzahl_label"
+                android:layout_column="5" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/anzahl_input"
+                android:layout_column="6"
+                android:text="0" />
+
+        </TableRow><TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alkoholgehalt(%)"
+            android:id="@+id/alkoholgehalt_label2"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alkoholgehalt_input2"
+            android:text="0.0"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Größe des Getränks(L)"
+            android:id="@+id/menge_label2"
+            android:layout_column="3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/menge_input2"
+            android:layout_column="4"
+            android:text="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anzahl"
+            android:id="@+id/anzahl_label2"
+            android:layout_column="5" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/anzahl_input2"
+            android:layout_column="6"
+            android:text="0" />
+
+    </TableRow><TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alkoholgehalt(%)"
+            android:id="@+id/alkoholgehalt_label3"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alkoholgehalt_input3"
+            android:text="0.0"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Größe des Getränks(L)"
+            android:id="@+id/menge_label3"
+            android:layout_column="3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/menge_input3"
+            android:layout_column="4"
+            android:text="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anzahl"
+            android:id="@+id/anzahl_label3"
+            android:layout_column="5" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/anzahl_input3"
+            android:layout_column="6"
+            android:text="0" />
+
+    </TableRow><TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alkoholgehalt(%)"
+            android:id="@+id/alkoholgehalt_label4"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alkoholgehalt_input4"
+            android:text="0.0"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Größe des Getränks(L)"
+            android:id="@+id/menge_label4"
+            android:layout_column="3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/menge_input4"
+            android:layout_column="4"
+            android:text="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anzahl"
+            android:id="@+id/anzahl_label4"
+            android:layout_column="5" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/anzahl_input4"
+            android:layout_column="6"
+            android:text="0" />
+
+    </TableRow><TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alkoholgehalt(%)"
+            android:id="@+id/alkoholgehalt_label5"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alkoholgehalt_input5"
+            android:text="0.0"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Größe des Getränks(L)"
+            android:id="@+id/menge_label5"
+            android:layout_column="3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/menge_input5"
+            android:layout_column="4"
+            android:text="0.0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anzahl"
+            android:id="@+id/anzahl_label5"
+            android:layout_column="5" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/anzahl_input5"
+            android:layout_column="6"
+            android:text="0" />
+
+    </TableRow>
+
+    </TableLayout>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Switch"
+        android:id="@+id/geschlecht"
+        android:layout_below="@+id/tableLayout"
+        android:layout_toRightOf="@+id/promille_berechnen"
+        android:layout_toEndOf="@+id/promille_berechnen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Männlich"
+        android:id="@+id/mannlich_label"
+        android:layout_above="@+id/korpergewicht_input"
+        android:layout_toRightOf="@+id/geschlecht"
+        android:layout_toEndOf="@+id/geschlecht" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weiblich"
+        android:id="@+id/weiblich_label"
+        android:layout_alignTop="@+id/geschlecht"
+        android:layout_alignRight="@+id/promille_berechnen"
+        android:layout_alignEnd="@+id/promille_berechnen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="köopergewicht(kg)"
+        android:id="@+id/korpergewicht_label"
+        android:layout_below="@+id/geschlecht"
+        android:layout_toLeftOf="@+id/weiblich_label"
+        android:layout_toStartOf="@+id/weiblich_label" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/korpergewicht_input"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/korpergewicht_label"
+        android:layout_toEndOf="@+id/korpergewicht_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Zeit vergangen(h) seit erstem konsum"
+        android:id="@+id/zeit_label"
+        android:layout_below="@+id/korpergewicht_input"
+        android:layout_toLeftOf="@+id/geschlecht"
+        android:layout_toStartOf="@+id/geschlecht" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/zeit_input"
+        android:layout_alignTop="@+id/zeit_label"
+        android:layout_alignRight="@+id/mannlich_label"
+        android:layout_alignEnd="@+id/mannlich_label"
+        android:text="0" />
 
 </RelativeLayout>
