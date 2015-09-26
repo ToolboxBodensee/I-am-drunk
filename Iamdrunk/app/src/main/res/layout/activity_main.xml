@@ -103,6 +103,27 @@
                     android:text="Liegestützen"
                     android:id="@+id/textView5" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape"
+                android:weightSum="1"
+                android:id="@+id/punktantippen">
+
+                <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="promille"
+                    android:id="@+id/textView7" />
+            </LinearLayout>
 
 
             </LinearLayout>

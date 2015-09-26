@@ -53,6 +53,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
         </activity>
+        <activity
+            android:name=".PunktAntippenMinispielActivity"
+            android:label="@string/title_activity_punkt_antippen_minispiel"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
