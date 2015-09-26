@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends Activity {
@@ -16,6 +17,30 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LinearLayout toilette = (LinearLayout)findViewById(R.id.toilette);
+        LinearLayout finde = (LinearLayout)findViewById(R.id.finde);
+        LinearLayout promille = (LinearLayout)findViewById(R.id.promille);
+        toilette.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), Toiletenfinden.class);
+                startActivity(intent);
+            }
+        });
+        promille.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), PromilleRechnerActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        finde.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
