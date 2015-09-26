@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
         LinearLayout promille = (LinearLayout)findViewById(R.id.promille);
         LinearLayout liegestutzen = (LinearLayout)findViewById(R.id.liegestutzen);
         LinearLayout punktantippen = (LinearLayout) findViewById(R.id.punktantippen);
+        LinearLayout geradelaufen = (LinearLayout)findViewById(R.id.geradelaufen);
         toilette.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +59,16 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+        geradelaufen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), GeradeLaufenMinispielActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
 
     @Override
