@@ -1,7 +1,6 @@
 package org.toolboxbodensee.iamdrunk;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class PromilleRechnerActivity extends Activity {
@@ -44,8 +44,10 @@ public class PromilleRechnerActivity extends Activity {
                 e[2][4] = (EditText)findViewById(R.id.anzahl_input5);
                 double alkoholmenge = 0;
                 for(int i = 0; i < 5; i++)
-                    alkoholmenge += Double.parseDouble(e[0][i].getText().toString())*Double.parseDouble(e[1][i].getText().toString())* Integer.parseInt(e[2][i].getText().toString())*10;   //Blutalkohol(ml)
-                double promille_ergebnis = 0;
+                    alkoholmenge += 0.8 * Double.parseDouble(e[0][i].getText().toString())*Double.parseDouble(e[1][i].getText().toString())* Integer.parseInt(e[2][i].getText().toString())*10;   //Blutalkohol(ml)
+
+                Toast.makeText(getApplicationContext(), alkoholmenge +"", Toast.LENGTH_LONG).show();
+                double promille_ergebnis;
                 if(geschlecht.isChecked())
                     promille_ergebnis = alkoholmenge/(Double.parseDouble(korpergewicht.getText().toString())*0.55) - Double.parseDouble(zeit.getText().toString())*0.15;
                 else
