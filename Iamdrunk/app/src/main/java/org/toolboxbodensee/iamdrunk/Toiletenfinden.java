@@ -40,11 +40,11 @@ public class Toiletenfinden extends Activity {
         loadDB();
         listView = (ListView)findViewById(R.id.listToilette);
 
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
 
-        listView.setAdapter(adapter);*/
+        listView.setAdapter(adapter);
     }
 
     private void loadDB(){
@@ -81,11 +81,12 @@ public class Toiletenfinden extends Activity {
 
         @Override
         protected void onPostExecute(String text) {
+
             /*TextView textView = (TextView)findViewById(R.id.testedit);
             textView.setText(text);*/
             //String[] items = new String[]{"klsks", "ksldks"};
 
-            
+
 
 
             /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
