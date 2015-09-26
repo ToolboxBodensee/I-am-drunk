@@ -240,7 +240,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
     public void onLocationChanged(Location location) {
     }
 
-    @Overrided
+    @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
 
