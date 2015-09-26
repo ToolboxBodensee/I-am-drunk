@@ -3,6 +3,8 @@ package org.toolboxbodensee.iamdrunk;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,6 +14,16 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class Toiletenfinden extends ActionBarActivity {
+    ListView listView;
+    String[] values = new String[] { "Android List View",
+            "Adapter implementation",
+            "Simple List View In Android",
+            "Create List View Android",
+            "Android Example",
+            "List View Source Code",
+            "List View Array Adapter",
+            "Android Example List View"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +31,13 @@ public class Toiletenfinden extends ActionBarActivity {
         setContentView(R.layout.activity_toiletenfinden);
 
         loadDB();
+        listView = (ListView)findViewById(R.id.listToilette);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
+
+        listView.setAdapter(adapter);
     }
 
     private void loadDB(){
@@ -55,8 +74,14 @@ public class Toiletenfinden extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String text) {
-            TextView textView = (TextView)findViewById(R.id.testedit);
-            textView.setText(text);
+            /*TextView textView = (TextView)findViewById(R.id.testedit);
+            textView.setText(text);*/
+
+            String[] getrennt = text.split(",");
+            String[] 
+            for(int counter=0; counter<getrennt.length-3; counter+=4){
+
+            }
         }
 
         protected void onProgressUpdate(Integer... progress) {
