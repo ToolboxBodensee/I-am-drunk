@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.toolboxbodensee.iamdrunk" >
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,6 +21,10 @@
         <activity
             android:name=".Toiletenfinden"
             android:label="@string/title_activity_toiletenfinden" >
+        </activity>
+        <activity
+            android:name=".PromilleRechnerActivity"
+            android:label="@string/title_activity_promille_rechner" >
         </activity>
     </application>
 
