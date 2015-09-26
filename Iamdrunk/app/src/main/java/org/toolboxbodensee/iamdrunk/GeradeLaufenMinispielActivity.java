@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -26,13 +27,15 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
     float ValueX;
     float ValueY;
     float ValueZ;
-    float AccelerationXtreshold;
+    float AccelerationXtreshold = 5;
     int measurements;
     int invalidMeasurements;
     TextView score;
+    Button startbutton;
+    ProgressBar progressBar;
 
     public void onSensorChanged(SensorEvent event) {
-        ValueX = event.values[0];
+        ValueX = event.values[0] * 2;
         ValueY = event.values[1];
         ValueZ = event.values[2];
 
@@ -46,7 +49,8 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gerade_laufen_minispiel);
-        Button startbutton = (Button) findViewById(R.id.button_start_geradelaufen);
+        startbutton = (Button) findViewById(R.id.button_start_geradelaufen);
+        progressBar = (ProgressBar) findViewById(R.id.geradelaufenProgressbar);
         startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,28 +59,44 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
         });
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
         SharedPreferences settings = getSharedPreferences("GeradeLaufenConfig", 0);
-        float AccelerationXtreshold = settings.getFloat("AccelerationXtreshold", (float)5.0);
+        float AccelerationXtreshold = settings.getFloat("AccelerationXtreshold", (float) 5.0);
         score = (TextView) findViewById(R.id.score);
     }
 
     void startgame()
     {
-        final CountDownTimer countDownTimer = new CountDownTimer(5000, 100) {
+        measurements = 0;
+        invalidMeasurements = 0;
+        startbutton.setEnabled(false);
+        progressBar.setProgress(0);
+        final int duration = 5000;
+        progressBar.setMax(duration);
+        final CountDownTimer countDownTimer = new CountDownTimer(duration, 1) {
             @Override
             public void onTick(long millisUntilFinished) {
                 measure();
+                progressBar.setProgress(duration- safeLongToInt(millisUntilFinished));
             }
 
             @Override
             public void onFinish() {
-                score.setText(correctMeasurementsPercent() + "");
+                score.setText(Math.round(correctMeasurementsPercent() * 100) + "");
                 Log.d("game", correctMeasurementsPercent() + "");
+                startbutton.setEnabled(true);
             }
         };
         countDownTimer.start();
 
+    }
+
+    public static int safeLongToInt(long l) {
+        if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException
+                    (l + " cannot be cast to int without changing its value.");
+        }
+        return (int) l;
     }
 
 
@@ -85,6 +105,7 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
         Log.d("Game", "X: " + ValueX);
         Log.d("Game", "Y: " + ValueY);
         Log.d("Game", "Z: " + ValueZ);
+        measurements++;
         if(ValueX > AccelerationXtreshold || ValueX < AccelerationXtreshold * (-1))
         {
             invalidMeasurements++;

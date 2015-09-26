@@ -11,14 +11,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Game"
-        android:id="@+id/button_start_geradelaufen" />
+        android:id="@+id/button_start_geradelaufen"
+        android:layout_below="@+id/geradelaufenProgressbar"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="1"
+        android:text=""
+        android:layout_above="@id/geradelaufenProgressbar"
+        android:textSize="200sp"
         android:id="@+id/score"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/progressbar"
+        android:id="@+id/geradelaufenProgressbar"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

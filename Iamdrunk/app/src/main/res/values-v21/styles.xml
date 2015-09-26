@@ -11,5 +11,8 @@
         <!--   theme UI controls like checkboxes and text fields -->
         <item name="android:colorAccent">@color/accent</item>
     </style>
+    <style name="progressbar" parent="android:style/Widget.Material.ProgressBar.Horizontal">
+
+    </style>
 
 </resources>
