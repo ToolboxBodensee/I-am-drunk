@@ -4,6 +4,6 @@
     <string name="app_name">I am drunk</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_toiletenfinden">Toileten in der nähe Finden</string>
+    <string name="title_activity_toiletenfinden">Toiletten in der Nähe finden</string>
 
 </resources>
