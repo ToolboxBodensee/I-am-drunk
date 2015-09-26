@@ -9,10 +9,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,17 +23,20 @@
         <activity
             android:name=".Toiletenfinden"
             android:label="@string/title_activity_toiletenfinden"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".PromilleRechnerActivity"
             android:label="@string/title_activity_promille_rechner"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MeetPeopleActivity"
             android:label="@string/title_activity_meet_people"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
@@ -40,7 +44,8 @@
         <activity
             android:name=".GeradeLaufenMinispielActivity"
             android:label="@string/title_activity_gerade_laufen_minispiel"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
@@ -48,7 +53,8 @@
         <activity
             android:name=".LiegestutzenActivity"
             android:label="@string/title_activity_liegestutzen"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
@@ -56,10 +62,26 @@
         <activity
             android:name=".PunktAntippenMinispielActivity"
             android:label="@string/title_activity_punkt_antippen_minispiel"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
+        </activity>
+        <activity
+            android:name=".LauncherActivity"
+            android:label="@string/title_activity_launcher"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
+            <intent-filter>
+                <!-- The following two intent-filters are the key to set homescreen -->
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+            </intent-filter>
         </activity>
     </application>
 

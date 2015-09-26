@@ -10,5 +10,6 @@
     <string name="title_activity_gerade_laufen_minispiel">GeradeLaufenMinispielActivity</string>
     <string name="title_activity_liegestutzen">Liegestützen Test</string>
     <string name="title_activity_punkt_antippen_minispiel">PunktAntippenMinispielActivity</string>
+    <string name="title_activity_launcher">Drunk Launcher</string>
 
 </resources>
