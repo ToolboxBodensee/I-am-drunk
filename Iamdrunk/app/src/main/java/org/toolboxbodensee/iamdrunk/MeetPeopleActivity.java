@@ -242,9 +242,9 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
 
     }
+
 
     @Override
     public void onProviderEnabled(String provider) {
