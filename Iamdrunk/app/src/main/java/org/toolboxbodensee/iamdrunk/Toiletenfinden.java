@@ -44,7 +44,7 @@ public class Toiletenfinden extends Activity {
         listView = (ListView)findViewById(R.id.listToilette);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+                R.layout.simple_list_item, android.R.id.text1, values);
 
 
         listView.setAdapter(adapter);
@@ -86,24 +86,12 @@ public class Toiletenfinden extends Activity {
 
         @Override
         protected void onPostExecute(String text) {
-
-            /*TextView textView = (TextView)findViewById(R.id.testedit);
-            textView.setText(text);*/
-            //String[] items = new String[]{"klsks", "ksldks"};
-
+            String[] getrennt = text.split("[,]");
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                    R.layout.simple_list_item, android.R.id.text1, getrennt);
 
 
-
-            /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_list_item_1, android.R.id.text1, values);
-
-
-            listView.setAdapter(adapter);*/
-
-            //listView.setAdapter(adapter);
-            /*adapter.clear();
-            for(int counter=0; counter<getrennt.length-3; counter+=4)
-                adapter.add(getrennt[counter]+getrennt[counter+1]+getrennt[counter+2]+getrennt[counter+3]);*/
+            listView.setAdapter(adapter);
 
 
         }
