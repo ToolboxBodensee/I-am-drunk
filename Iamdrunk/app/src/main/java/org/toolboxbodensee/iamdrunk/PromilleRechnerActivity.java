@@ -46,14 +46,14 @@ public class PromilleRechnerActivity extends Activity {
                 for(int i = 0; i < 5; i++)
                     alkoholmenge += 0.8 * Double.parseDouble(e[0][i].getText().toString())*Double.parseDouble(e[1][i].getText().toString())* Integer.parseInt(e[2][i].getText().toString())*10;   //Blutalkohol(ml)
 
-                Toast.makeText(getApplicationContext(), alkoholmenge +"", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), alkoholmenge +"", Toast.LENGTH_LONG).show();
                 double promille_ergebnis;
                 if(geschlecht.isChecked())
                     promille_ergebnis = alkoholmenge/(Double.parseDouble(korpergewicht.getText().toString())*0.55) - Double.parseDouble(zeit.getText().toString())*0.15;
                 else
                     promille_ergebnis = alkoholmenge/(Double.parseDouble(korpergewicht.getText().toString())*0.68) - Double.parseDouble(zeit.getText().toString())*0.15;
 
-                    ergebnis.setText(promille_ergebnis+"");
+                    ergebnis.setText("Blutalkohol: "+promille_ergebnis+"‰");
             }
         });
     }
