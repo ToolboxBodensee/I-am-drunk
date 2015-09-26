@@ -35,14 +35,12 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, Toiletenfinden.class);
+            startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void toiletteTest(View view){
-        Intent intent = new Intent(this, Toiletenfinden.class);
-        startActivity(intent);
-    }
 }
