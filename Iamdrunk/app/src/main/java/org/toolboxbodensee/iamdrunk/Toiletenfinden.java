@@ -3,15 +3,31 @@ package org.toolboxbodensee.iamdrunk;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
 public class Toiletenfinden extends ActionBarActivity {
+    ListView listView;
+    String[] values = new String[] { "Android List View",
+            "Adapter implementation",
+            "Simple List View In Android",
+            "Create List View Android",
+            "Android Example",
+            "List View Source Code",
+            "List View Array Adapter",
+            "Android Example List View"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +35,13 @@ public class Toiletenfinden extends ActionBarActivity {
         setContentView(R.layout.activity_toiletenfinden);
 
         loadDB();
+        listView = (ListView)findViewById(R.id.listToilette);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
+
+        listView.setAdapter(adapter);
     }
 
     private void loadDB(){
@@ -39,13 +62,13 @@ public class Toiletenfinden extends ActionBarActivity {
         @Override
         protected String doInBackground(URL... url) {
             try {
-                publishProgress((int)0);
+                publishProgress((int) 0);
                 Scanner s = new Scanner(url[0].openStream());
                 String text = "";
                 publishProgress(2);
-                while(s.hasNextLine())
+                while (s.hasNextLine())
                     text += s.nextLine();
-                publishProgress((int)100);
+                publishProgress((int) 100);
                 return text;
             } catch (Exception e) {
                 this.exception = e;
@@ -55,12 +78,18 @@ public class Toiletenfinden extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String text) {
-            TextView textView = (TextView)findViewById(R.id.testedit);
-            textView.setText(text);
+            /*TextView textView = (TextView)findViewById(R.id.testedit);
+            textView.setText(text);*/
+
+            String[] getrennt = text.split(",");
+            //String[]
+            for (int counter = 0; counter < getrennt.length - 3; counter += 4) {
+
+            }
         }
 
         protected void onProgressUpdate(Integer... progress) {
-            ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressLoad);
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressLoad);
             progressBar.setProgress(progress[0]);
         }
     }

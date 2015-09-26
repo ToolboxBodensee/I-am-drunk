@@ -24,11 +24,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ExpandableListView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/expandableListView"
-        android:layout_below="@+id/testedit"
+        android:id="@+id/listToilette"
+        android:layout_alignTop="@+id/testedit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
