@@ -30,7 +30,7 @@ public class Toiletenfinden extends Activity {
             "Android Example List View"
     };
 
-    ArrayAdapter<String> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,11 @@ public class Toiletenfinden extends Activity {
         loadDB();
         listView = (ListView)findViewById(R.id.listToilette);
 
-        adapter = new ArrayAdapter<String>(this,
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);*/
     }
 
     private void loadDB(){
@@ -83,11 +83,15 @@ public class Toiletenfinden extends Activity {
         protected void onPostExecute(String text) {
             /*TextView textView = (TextView)findViewById(R.id.testedit);
             textView.setText(text);*/
+            //String[] items = new String[]{"klsks", "ksldks"};
 
-            String[] getrennt = text.split(",");
-            adapter.clear();
+
+
+
+            //listView.setAdapter(adapter);
+            /*adapter.clear();
             for(int counter=0; counter<getrennt.length-3; counter+=4)
-                adapter.add(getrennt[counter]+getrennt[counter+1]+getrennt[counter+2]+getrennt[counter+3]);
+                adapter.add(getrennt[counter]+getrennt[counter+1]+getrennt[counter+2]+getrennt[counter+3]);*/
 
 
         }
