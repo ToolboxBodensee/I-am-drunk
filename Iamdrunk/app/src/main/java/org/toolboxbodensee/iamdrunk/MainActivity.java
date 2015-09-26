@@ -69,6 +69,11 @@ public class MainActivity extends Activity {
             startActivity(intent);
             return true;
         }
+        if (id == R.id.action_discover) {
+            Intent intent = new Intent(this, MeetPeopleActivity.class);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

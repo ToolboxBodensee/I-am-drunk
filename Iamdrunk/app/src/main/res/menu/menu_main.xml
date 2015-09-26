@@ -5,4 +5,6 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_promille" android:title="promillerechner"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_discover" android:title="discover"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>
