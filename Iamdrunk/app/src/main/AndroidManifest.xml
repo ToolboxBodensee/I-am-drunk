@@ -20,11 +20,14 @@
         </activity>
         <activity
             android:name=".Toiletenfinden"
-            android:label="@string/title_activity_toiletenfinden" >
+            android:label="@string/title_activity_toiletenfinden"
+            android:parentActivityName=".MainActivity"
+            >
         </activity>
         <activity
             android:name=".PromilleRechnerActivity"
-            android:label="@string/title_activity_promille_rechner" >
+            android:label="@string/title_activity_promille_rechner"
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 
