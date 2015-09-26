@@ -44,42 +44,48 @@
                 android:layout_height="wrap_content"
                 android:text="Alkoholgehalt(%)"
                 android:id="@+id/alkoholgehalt_label"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:textSize="12dp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/alkoholgehalt_input"
                 android:text="0.0"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Größe des Getränks(L)"
                 android:id="@+id/menge_label"
-                android:layout_column="3" />
+                android:layout_column="3"
+                android:textSize="12dp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/menge_input"
                 android:layout_column="4"
-                android:text="0.0" />
+                android:text="0.0"
+                android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Anzahl"
                 android:id="@+id/anzahl_label"
-                android:layout_column="5" />
+                android:layout_column="5"
+                android:textSize="12dp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/anzahl_input"
                 android:layout_column="6"
-                android:text="0" />
+                android:text="0"
+                android:textSize="12dp" />
 
         </TableRow><TableRow
         android:layout_width="fill_parent"
@@ -90,42 +96,48 @@
             android:layout_height="wrap_content"
             android:text="Alkoholgehalt(%)"
             android:id="@+id/alkoholgehalt_label2"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alkoholgehalt_input2"
             android:text="0.0"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Größe des Getränks(L)"
             android:id="@+id/menge_label2"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/menge_input2"
             android:layout_column="4"
-            android:text="0.0" />
+            android:text="0.0"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anzahl"
             android:id="@+id/anzahl_label2"
-            android:layout_column="5" />
+            android:layout_column="5"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/anzahl_input2"
             android:layout_column="6"
-            android:text="0" />
+            android:text="0"
+            android:textSize="12dp" />
 
     </TableRow><TableRow
         android:layout_width="fill_parent"
@@ -136,42 +148,48 @@
             android:layout_height="wrap_content"
             android:text="Alkoholgehalt(%)"
             android:id="@+id/alkoholgehalt_label3"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alkoholgehalt_input3"
             android:text="0.0"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Größe des Getränks(L)"
             android:id="@+id/menge_label3"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/menge_input3"
             android:layout_column="4"
-            android:text="0.0" />
+            android:text="0.0"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anzahl"
             android:id="@+id/anzahl_label3"
-            android:layout_column="5" />
+            android:layout_column="5"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/anzahl_input3"
             android:layout_column="6"
-            android:text="0" />
+            android:text="0"
+            android:textSize="12dp" />
 
     </TableRow><TableRow
         android:layout_width="fill_parent"
@@ -182,42 +200,48 @@
             android:layout_height="wrap_content"
             android:text="Alkoholgehalt(%)"
             android:id="@+id/alkoholgehalt_label4"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alkoholgehalt_input4"
             android:text="0.0"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Größe des Getränks(L)"
             android:id="@+id/menge_label4"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/menge_input4"
             android:layout_column="4"
-            android:text="0.0" />
+            android:text="0.0"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anzahl"
             android:id="@+id/anzahl_label4"
-            android:layout_column="5" />
+            android:layout_column="5"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/anzahl_input4"
             android:layout_column="6"
-            android:text="0" />
+            android:text="0"
+            android:textSize="12dp" />
 
     </TableRow><TableRow
         android:layout_width="fill_parent"
@@ -228,42 +252,48 @@
             android:layout_height="wrap_content"
             android:text="Alkoholgehalt(%)"
             android:id="@+id/alkoholgehalt_label5"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alkoholgehalt_input5"
             android:text="0.0"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Größe des Getränks(L)"
             android:id="@+id/menge_label5"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/menge_input5"
             android:layout_column="4"
-            android:text="0.0" />
+            android:text="0.0"
+            android:textSize="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anzahl"
             android:id="@+id/anzahl_label5"
-            android:layout_column="5" />
+            android:layout_column="5"
+            android:textSize="12dp" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/anzahl_input5"
             android:layout_column="6"
-            android:text="0" />
+            android:text="0"
+            android:textSize="12dp" />
 
     </TableRow>
 
@@ -283,18 +313,20 @@
         android:layout_height="wrap_content"
         android:text="Männlich"
         android:id="@+id/mannlich_label"
-        android:layout_above="@+id/korpergewicht_input"
-        android:layout_toRightOf="@+id/geschlecht"
-        android:layout_toEndOf="@+id/geschlecht" />
+        android:textSize="12dp"
+        android:layout_below="@+id/tableLayout"
+        android:layout_toLeftOf="@+id/korpergewicht_label"
+        android:layout_toStartOf="@+id/korpergewicht_label" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weiblich"
         android:id="@+id/weiblich_label"
-        android:layout_alignTop="@+id/geschlecht"
-        android:layout_alignRight="@+id/promille_berechnen"
-        android:layout_alignEnd="@+id/promille_berechnen" />
+        android:textSize="12dp"
+        android:layout_above="@+id/korpergewicht_input"
+        android:layout_toRightOf="@+id/geschlecht"
+        android:layout_toEndOf="@+id/geschlecht" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -303,15 +335,17 @@
         android:id="@+id/korpergewicht_label"
         android:layout_below="@+id/geschlecht"
         android:layout_toLeftOf="@+id/weiblich_label"
-        android:layout_toStartOf="@+id/weiblich_label" />
+        android:layout_toStartOf="@+id/weiblich_label"
+        android:textSize="12dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/korpergewicht_input"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/korpergewicht_label"
-        android:layout_toEndOf="@+id/korpergewicht_label" />
+        android:textSize="12dp"
+        android:layout_alignTop="@+id/korpergewicht_label"
+        android:layout_alignLeft="@+id/weiblich_label"
+        android:layout_alignStart="@+id/weiblich_label" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -321,7 +355,8 @@
         android:id="@+id/zeit_label"
         android:layout_below="@+id/korpergewicht_input"
         android:layout_toLeftOf="@+id/geschlecht"
-        android:layout_toStartOf="@+id/geschlecht" />
+        android:layout_toStartOf="@+id/geschlecht"
+        android:textSize="12dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -332,6 +367,7 @@
         android:layout_alignTop="@+id/zeit_label"
         android:layout_alignRight="@+id/mannlich_label"
         android:layout_alignEnd="@+id/mannlich_label"
-        android:text="0" />
+        android:text="0"
+        android:textSize="12dp" />
 
 </RelativeLayout>
