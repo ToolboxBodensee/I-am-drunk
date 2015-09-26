@@ -1,7 +1,10 @@
 package org.toolboxbodensee.iamdrunk;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -12,11 +15,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LauncherActivity extends Activity {
     ListView appList;
     String[] apps = new String[]{
             "Telefon",
-            "DB-Navigator",
             "Browser"
     };
 
@@ -42,16 +47,47 @@ public class LauncherActivity extends Activity {
 
                 switch (item){
                     case "Telefon":
-                        Intent intent = new Intent(Intent.ACTION_CALL);
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
                         startActivity(intent);
                         break;
-                    case "DB-Navigator":
-                        break;
                     case "Browser":
+                        Uri webpage = Uri.parse("http://www.google.com");
+                        intent = new Intent(Intent.ACTION_VIEW, webpage);
+                        if (intent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
                         break;
                 }
             }
         });
+    }
+
+    private boolean isMyAppLauncherDefault() {
+        final IntentFilter filter = new IntentFilter(Intent.ACTION_MAIN);
+        filter.addCategory(Intent.CATEGORY_HOME);
+
+        List<IntentFilter> filters = new ArrayList<IntentFilter>();
+        filters.add(filter);
+
+        final String myPackageName = getPackageName();
+        List<ComponentName> activities = new ArrayList<ComponentName>();
+        final PackageManager packageManager = (PackageManager) getPackageManager();
+
+        packageManager.getPreferredActivities(filters, activities, null);
+
+        for (ComponentName activity : activities) {
+            if (myPackageName.equals(activity.getPackageName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void launchAppChooser() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 }
