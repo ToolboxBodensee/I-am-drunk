@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.toolboxbodensee.iamdrunk" >
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET" />
-=======
 
     <uses-permission android:name="android.permission.READ_LOGS"></uses-permission>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
->>>>>>> b8f4e969978645f40677926255101a41b3965cc1
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
