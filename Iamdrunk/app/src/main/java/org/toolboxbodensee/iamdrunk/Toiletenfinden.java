@@ -1,5 +1,6 @@
 package org.toolboxbodensee.iamdrunk;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class Toiletenfinden extends ActionBarActivity {
+public class Toiletenfinden extends Activity {
     ListView listView;
     String[] values = new String[] { "Android List View",
             "Adapter implementation",
