@@ -53,6 +53,9 @@ public class PromilleRechnerActivity extends Activity {
                 else
                     promille_ergebnis = alkoholmenge/(Double.parseDouble(korpergewicht.getText().toString())*0.68) - Double.parseDouble(zeit.getText().toString())*0.15;
 
+                    promille_ergebnis*=10;
+                    promille_ergebnis = Math.round(promille_ergebnis);
+                    promille_ergebnis/=10;
                     ergebnis.setText("Blutalkohol: "+promille_ergebnis+"‰");
             }
         });
