@@ -1,9 +1,12 @@
 package org.toolboxbodensee.iamdrunk;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -45,6 +48,8 @@ public class Toiletenfinden extends Activity {
 
 
         listView.setAdapter(adapter);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void loadDB(){
@@ -107,5 +112,12 @@ public class Toiletenfinden extends Activity {
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressLoad);
             progressBar.setProgress(progress[0]);
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+
     }
 }
