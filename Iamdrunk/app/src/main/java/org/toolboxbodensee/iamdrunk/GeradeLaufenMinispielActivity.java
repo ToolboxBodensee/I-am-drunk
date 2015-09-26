@@ -41,7 +41,7 @@ public class GeradeLaufenMinispielActivity extends ActionBarActivity {
 
     void measure(int time)
     {
-        
+
     }
 
     @Override
