@@ -3,11 +3,14 @@ package org.toolboxbodensee.iamdrunk;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -17,6 +20,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,8 +29,7 @@ import java.util.Scanner;
 
 public class Toiletenfinden extends Activity {
     ListView listView;
-
-
+    String[] getrennt = new String[9000];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,23 @@ public class Toiletenfinden extends Activity {
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                String item = ((TextView) view).getText().toString();
+                String x_koord = getrennt[position*4];
+                String y_koord = getrennt[position*4+1];
+
+                String url = "https://www.google.de/maps/@"+x_koord+","+y_koord+",20z";
+                Log.e("URL", url);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
     }
 
     private void loadDB(){
@@ -82,11 +102,11 @@ public class Toiletenfinden extends Activity {
 
         @Override
         protected void onPostExecute(String text) {
-            String[] getrennt = text.split("[,]");
+            /*String[]*/ getrennt = text.split("[,]");
 
             String[] name = new String[getrennt.length/4];
 
-            for(int counter=0; counter<getrennt.length/4; counter++)
+            for (int counter=0; counter<getrennt.length/4; counter++)
                 name[counter] = getrennt[counter*4 + 2];
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
@@ -94,6 +114,9 @@ public class Toiletenfinden extends Activity {
 
 
             listView.setAdapter(adapter);
+
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressLoad);
+            progressBar.setVisibility(View.INVISIBLE);
 
 
         }
