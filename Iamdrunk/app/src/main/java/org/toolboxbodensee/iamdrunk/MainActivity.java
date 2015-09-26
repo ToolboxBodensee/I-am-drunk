@@ -1,10 +1,16 @@
 package org.toolboxbodensee.iamdrunk;
 
+<<<<<<< HEAD
 import android.app.Activity;
+=======
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
+>>>>>>> 8e6740fc0633df6929bf5db2e9592036b6f1ebb9
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends Activity {
@@ -36,5 +42,10 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void toiletteTest(View view){
+        Intent intent = new Intent(this, Toiletenfinden.class);
+        startActivity(intent);
     }
 }
