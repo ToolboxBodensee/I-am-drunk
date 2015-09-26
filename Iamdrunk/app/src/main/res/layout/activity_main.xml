@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
+                    android:text="toilette"
                     android:id="@+id/textView2" />
             </LinearLayout>
             <LinearLayout
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
+                    android:text="promille"
                     android:id="@+id/textView3" />
             </LinearLayout>
             <LinearLayout
@@ -79,7 +79,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
+                    android:text="finde"
                     android:id="@+id/textView4" />
             </LinearLayout>
             <LinearLayout
