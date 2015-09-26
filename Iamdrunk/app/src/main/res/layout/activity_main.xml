@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="toilette"
+                    android:text="Finde die nächste öffentliche Toilette"
                     android:id="@+id/textView2" />
             </LinearLayout>
             <LinearLayout
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="promille"
+                    android:text="Promille Rechner"
                     android:id="@+id/textView3" />
             </LinearLayout>
             <LinearLayout
@@ -79,7 +79,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="finde"
+                    android:text="Finde betrunkene Menschen in der Nähe"
                     android:id="@+id/textView4" />
             </LinearLayout>
             <LinearLayout
@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Liegestützen"
+                    android:text="Liegestützen Test"
                     android:id="@+id/textView5" />
             </LinearLayout>
             <LinearLayout
@@ -121,7 +121,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="promille"
+                    android:text="Reaktionstest"
                     android:id="@+id/textView7" />
             </LinearLayout>
             <LinearLayout
