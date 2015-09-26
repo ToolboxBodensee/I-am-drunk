@@ -37,6 +37,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
         </activity>
+        <activity
+            android:name=".GeradeLaufenMinispielActivity"
+            android:label="@string/title_activity_gerade_laufen_minispiel"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.toolboxbodensee.iamdrunk.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
