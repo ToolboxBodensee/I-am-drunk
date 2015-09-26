@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
         LinearLayout toilette = (LinearLayout)findViewById(R.id.toilette);
         LinearLayout finde = (LinearLayout)findViewById(R.id.finde);
         LinearLayout promille = (LinearLayout)findViewById(R.id.promille);
+        LinearLayout liegestutzen = (LinearLayout)findViewById(R.id.liegestutzen);
         toilette.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +40,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), MeetPeopleActivity.class);
+                startActivity(intent);
+            }
+        });
+        liegestutzen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), LiegestutzenActivity.class);
                 startActivity(intent);
             }
         });
