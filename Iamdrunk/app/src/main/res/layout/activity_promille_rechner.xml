@@ -10,14 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
         android:id="@+id/promille_ergebnis"
+        android:textAlignment="center"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textAlignment="center" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -302,11 +299,10 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Switch"
         android:id="@+id/geschlecht"
         android:layout_below="@+id/tableLayout"
-        android:layout_toRightOf="@+id/promille_berechnen"
-        android:layout_toEndOf="@+id/promille_berechnen" />
+        android:layout_toRightOf="@+id/mannlich_label"
+        android:layout_toEndOf="@+id/mannlich_label" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -314,9 +310,9 @@
         android:text="Männlich"
         android:id="@+id/mannlich_label"
         android:textSize="12dp"
-        android:layout_below="@+id/tableLayout"
-        android:layout_toLeftOf="@+id/korpergewicht_label"
-        android:layout_toStartOf="@+id/korpergewicht_label" />
+        android:layout_alignBottom="@+id/geschlecht"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -324,50 +320,54 @@
         android:text="Weiblich"
         android:id="@+id/weiblich_label"
         android:textSize="12dp"
-        android:layout_above="@+id/korpergewicht_input"
+        android:layout_alignBottom="@+id/geschlecht"
         android:layout_toRightOf="@+id/geschlecht"
         android:layout_toEndOf="@+id/geschlecht" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="köopergewicht(kg)"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Körpergewicht (kg)"
         android:id="@+id/korpergewicht_label"
+        android:textSize="12dp"
         android:layout_below="@+id/geschlecht"
-        android:layout_toLeftOf="@+id/weiblich_label"
-        android:layout_toStartOf="@+id/weiblich_label"
-        android:textSize="12dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/korpergewicht_input"
         android:textSize="12dp"
-        android:layout_alignTop="@+id/korpergewicht_label"
-        android:layout_alignLeft="@+id/weiblich_label"
-        android:layout_alignStart="@+id/weiblich_label" />
+        android:layout_below="@+id/korpergewicht_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="75" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Zeit vergangen(h) seit erstem konsum"
+        android:text="Zeit vergangen (in h) seit erstem Konsum"
         android:id="@+id/zeit_label"
+        android:textSize="12dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/korpergewicht_input"
-        android:layout_toLeftOf="@+id/geschlecht"
-        android:layout_toStartOf="@+id/geschlecht"
-        android:textSize="12dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/zeit_input"
-        android:layout_alignTop="@+id/zeit_label"
-        android:layout_alignRight="@+id/mannlich_label"
-        android:layout_alignEnd="@+id/mannlich_label"
         android:text="0"
-        android:textSize="12dp" />
+        android:textSize="12dp"
+        android:layout_below="@+id/zeit_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
