@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
             return true;
         }
         if (id == R.id.action_discover) {
-            Intent intent = new Intent(this, PromilleRechnerActivity.class);
+            Intent intent = new Intent(this, MeetPeopleActivity.class);
             startActivity(intent);
             return true;
         }
