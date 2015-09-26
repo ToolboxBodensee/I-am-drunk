@@ -1,5 +1,6 @@
 package org.toolboxbodensee.iamdrunk;
 
+<<<<<<< HEAD
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,10 +11,17 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+=======
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+
+import java.io.IOException;
+>>>>>>> b8f4e969978645f40677926255101a41b3965cc1
 import java.net.URL;
 import java.util.Scanner;
 
 public class Toiletenfinden extends ActionBarActivity {
+<<<<<<< HEAD
     ListView listView;
     String[] values = new String[] { "Android List View",
             "Adapter implementation",
@@ -24,11 +32,14 @@ public class Toiletenfinden extends ActionBarActivity {
             "List View Array Adapter",
             "Android Example List View"
     };
+=======
+>>>>>>> b8f4e969978645f40677926255101a41b3965cc1
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toiletenfinden);
+<<<<<<< HEAD
 
         loadDB();
         listView = (ListView)findViewById(R.id.listToilette);
@@ -87,6 +98,26 @@ public class Toiletenfinden extends ActionBarActivity {
         protected void onProgressUpdate(Integer... progress) {
             ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressLoad);
             progressBar.setProgress(progress[0]);
+=======
+    }
+
+    private void loadDB(){
+        try {
+            URL url = new URL("http://www.gratispinkeln.de/loadmarkers.php");
+            Scanner s = new Scanner(url.openStream());
+            // read from your scanner
+
+            String text  = s.toString();
+
+            
+
+        }
+        catch(IOException ex) {
+            // there was some connection problem, or the file did not exist on the server,
+            // or your URL was not in the right format.
+            // think about what to do now, and put it here.
+            ex.printStackTrace(); // for now, simply output it.
+>>>>>>> b8f4e969978645f40677926255101a41b3965cc1
         }
     }
 }
