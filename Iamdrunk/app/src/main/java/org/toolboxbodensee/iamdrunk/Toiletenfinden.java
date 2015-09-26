@@ -42,7 +42,7 @@ public class Toiletenfinden extends Activity implements LocationListener{
     float lat = 0;
     float lon = 0;
 
-    private Location toiletLocation;
+    private Location toiletLocation = new Location("point A");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,10 @@ public class Toiletenfinden extends Activity implements LocationListener{
 
                 String item = ((TextView) view).getText().toString();
 
-                String y_koord = getrennt[position*4].substring(3);
+                int start = getrennt[position*4].indexOf('.')-2;
+                if(start == -3)
+                    start = 0;
+                String y_koord = getrennt[position*4].substring(start);
                 String x_koord = getrennt[position*4+1];
 
                // Toast.makeText(getApplicationContext(), y_koord[0]+"|||"+y_koord[1], Toast.LENGTH_SHORT).show();
@@ -181,11 +184,20 @@ public class Toiletenfinden extends Activity implements LocationListener{
             String[] name = new String[getrennt.length/4];
 
             for (int counter=0; counter<getrennt.length/4; counter++){
-                toiletLocation.setLatitude(Float.parseFloat(getrennt[counter*4].substring(3)));
+                int start = getrennt[counter*4].indexOf('.')-2;
+                if(start == -3)
+                    start = 0;
+                String lang = getrennt[counter*4].substring(start);
+
+                Log.e("Lang", lang);
+
+                toiletLocation.setLatitude(Float.parseFloat(lang));
                 toiletLocation.setLongitude(Float.parseFloat(getrennt[counter * 4 + 1]));
-                name[counter] = getrennt[counter*4 + 2];
+                Location currentLoc = locationManager.getLastKnownLocation(provider);
+                name[counter] = currentLoc.distanceTo(toiletLocation)+ "|" + getrennt[counter*4 + 2];
 
             }
+            
 
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),

@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_toiletenfinden">Toiletten in der Nähe finden</string>
     <string name="title_activity_promille_rechner">PromilleRechnerActivity</string>
+    <string name="title_activity_meet_people">MeetPeopleActivity</string>
 
 </resources>
