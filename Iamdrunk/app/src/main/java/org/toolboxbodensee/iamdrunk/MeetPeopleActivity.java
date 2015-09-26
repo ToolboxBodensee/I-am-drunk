@@ -176,8 +176,13 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
         @Override
         public void onPeerDiscovered(final Peer peer) {
             byte[] colorBytes = peer.getDiscoveryInfo();
+            String s="";
+            for(int i = 0; i < colorBytes.length; i ++)
+            {
+                s += (char)colorBytes[i];
+            }
             if (colorBytes != null ) {
-                Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " with color: " + colorBytes.toString());
+                Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " with color: " + s);
             } else {
                 Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " without color");
             }
