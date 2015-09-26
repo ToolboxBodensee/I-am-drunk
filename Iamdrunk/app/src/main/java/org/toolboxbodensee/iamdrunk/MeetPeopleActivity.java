@@ -115,6 +115,7 @@ public class MeetPeopleActivity extends Activity {
                 client.connect(APP_KEY);
             }
             startP2pDiscovery();
+            startGeoDiscovery();
         } else {
             Log.d("P2P", "Cannot start P2PKit, status code: " + statusCode);
             ConnectionResultHandling.showAlertDialogForConnectionError(this, statusCode);
