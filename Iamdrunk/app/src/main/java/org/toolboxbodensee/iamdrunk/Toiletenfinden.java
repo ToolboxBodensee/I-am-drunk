@@ -39,6 +39,11 @@ public class Toiletenfinden extends Activity implements LocationListener{
     private LocationManager locationManager;
     private String provider;
 
+    float lat = 0;
+    float lon = 0;
+
+    private Location toiletLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,10 +117,13 @@ public class Toiletenfinden extends Activity implements LocationListener{
 
     @Override
     public void onLocationChanged(Location location) {
-        int lat = (int) (location.getLatitude());
-        int lng = (int) (location.getLongitude());
+        //int lat = (int) (location.getLatitude());
+        //int lng = (int) (location.getLongitude());
         /*latituteField.setText(String.valueOf(lat));
         longitudeField.setText(String.valueOf(lng));*/
+        lat = (float)location.getLatitude();
+        lon = (float)location.getLongitude();
+        //Toast.makeText(this, Integer.toString(lat)+";"+Integer.toString(lng), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -172,8 +180,13 @@ public class Toiletenfinden extends Activity implements LocationListener{
 
             String[] name = new String[getrennt.length/4];
 
-            for (int counter=0; counter<getrennt.length/4; counter++)
+            for (int counter=0; counter<getrennt.length/4; counter++){
+                toiletLocation.setLatitude(Float.parseFloat(getrennt[counter*4].substring(3)));
+                toiletLocation.setLongitude(Float.parseFloat(getrennt[counter * 4 + 1]));
                 name[counter] = getrennt[counter*4 + 2];
+
+            }
+
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
                     R.layout.simple_list_item, android.R.id.text1, name);
