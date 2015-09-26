@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,19 +20,11 @@ import android.support.v7.app.ActionBarActivity;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Toiletenfinden extends Activity {
     ListView listView;
-    String[] values = new String[] { "Android List View",
-            "Adapter implementation",
-            "Simple List View In Android",
-            "Create List View Android",
-            "Android Example",
-            "List View Source Code",
-            "List View Array Adapter",
-            "Android Example List View"
-    };
 
 
 
@@ -43,11 +36,6 @@ public class Toiletenfinden extends Activity {
         loadDB();
         listView = (ListView)findViewById(R.id.listToilette);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.simple_list_item, android.R.id.text1, values);
-
-
-        listView.setAdapter(adapter);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
@@ -71,11 +59,19 @@ public class Toiletenfinden extends Activity {
         protected String doInBackground(URL... url) {
             try {
                 publishProgress((int) 0);
-                Scanner s = new Scanner(url[0].openStream());
+                Scanner s = new Scanner(url[0].openStream(), "ISO-8859-1");
                 String text = "";
                 publishProgress(2);
-                while (s.hasNextLine())
+                int counter=0, step =0;
+                while (s.hasNextLine()) {
                     text += s.nextLine();
+                    if(step++>21){
+                        counter++;
+                        step=0;
+                    }
+
+                    publishProgress(counter);
+                }
                 publishProgress((int) 100);
                 return text;
             } catch (Exception e) {
@@ -87,8 +83,14 @@ public class Toiletenfinden extends Activity {
         @Override
         protected void onPostExecute(String text) {
             String[] getrennt = text.split("[,]");
+
+            String[] name = new String[getrennt.length/4];
+
+            for(int counter=0; counter<getrennt.length/4; counter++)
+                name[counter] = getrennt[counter*4 + 2];
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    R.layout.simple_list_item, android.R.id.text1, getrennt);
+                    R.layout.simple_list_item, android.R.id.text1, name);
 
 
             listView.setAdapter(adapter);
