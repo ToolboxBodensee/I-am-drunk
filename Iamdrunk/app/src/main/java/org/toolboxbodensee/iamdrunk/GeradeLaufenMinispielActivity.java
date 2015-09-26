@@ -1,10 +1,12 @@
 package org.toolboxbodensee.iamdrunk;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,11 +26,16 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
     float ValueX;
     float ValueY;
     float ValueZ;
+    float AccelerationXtreshold;
+    int measurements;
+    int invalidMeasurements;
+    TextView score;
 
     public void onSensorChanged(SensorEvent event) {
         ValueX = event.values[0];
         ValueY = event.values[1];
         ValueZ = event.values[2];
+
 
     }
 
@@ -48,30 +56,48 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+        SharedPreferences settings = getSharedPreferences("GeradeLaufenConfig", 0);
+        float AccelerationXtreshold = settings.getFloat("AccelerationXtreshold", (float)5.0);
+        score = (TextView) findViewById(R.id.score);
     }
 
     void startgame()
     {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            int time = 0;
+        final CountDownTimer countDownTimer = new CountDownTimer(5000, 100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                measure();
+            }
 
             @Override
-            public void run() {
-                time+= 100;
-                measure(time);
+            public void onFinish() {
+                score.setText(correctMeasurementsPercent() + "");
+                Log.d("game", correctMeasurementsPercent() + "");
             }
-        }, 100, 100);
+        };
+        countDownTimer.start();
+
     }
 
 
-    void measure(int time)
+    void measure()
     {
-        Log.d("Game", "Time is: " + time);
         Log.d("Game", "X: " + ValueX);
         Log.d("Game", "Y: " + ValueY);
         Log.d("Game", "Z: " + ValueZ);
+        if(ValueX > AccelerationXtreshold || ValueX < AccelerationXtreshold * (-1))
+        {
+            invalidMeasurements++;
+        }
+
+
     }
+
+    Float correctMeasurementsPercent()
+    {
+        return (float) invalidMeasurements/measurements;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
