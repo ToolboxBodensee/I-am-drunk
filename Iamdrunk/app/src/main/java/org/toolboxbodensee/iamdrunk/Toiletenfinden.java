@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -30,11 +31,21 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Toiletenfinden extends Activity implements LocationListener{
     ListView listView;
     String[] getrennt = new String[9000];
+    String[] koord = new String[3000];
 
     private LocationManager locationManager;
     private String provider;
@@ -80,11 +91,13 @@ public class Toiletenfinden extends Activity implements LocationListener{
                 int start = getrennt[position*4].indexOf('.')-2;
                 if(start == -3)
                     start = 0;
-                String y_koord = getrennt[position*4].substring(start);
-                String x_koord = getrennt[position*4+1];
+                double lang = Double.parseDouble(getrennt[position * 4].substring(start));
+                double longi = Double.parseDouble(getrennt[position * 4 + 1]);
 
-               // Toast.makeText(getApplicationContext(), y_koord[0]+"|||"+y_koord[1], Toast.LENGTH_SHORT).show();
-                String url = "https://www.google.de/maps/@"+y_koord+","+x_koord+",15z?hl=de";
+
+                Log.e("dsds", lang+","+longi);
+               // Toast.makeText(getApplicationContext(), y_koord[0]+","+y_koord[1], Toast.LENGTH_SHORT).show();
+                String url = "https://www.google.de/maps/@"+koord[position]+",15z?hl=de";
                 Log.e("URL", url);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
@@ -182,22 +195,45 @@ public class Toiletenfinden extends Activity implements LocationListener{
             /*String[]*/ getrennt = text.split("[,]");
 
             String[] name = new String[getrennt.length/4];
+            Map<Integer, String> unsortMap = new HashMap<Integer, String>();
+            int counter=0;
 
-            for (int counter=0; counter<getrennt.length/4; counter++){
-                int start = getrennt[counter*4].indexOf('.')-2;
+            int start = 0;
+            for (counter=0; counter<getrennt.length/4; counter++){
+                start = getrennt[counter*4].indexOf('.')-2;
                 if(start == -3)
                     start = 0;
                 String lang = getrennt[counter*4].substring(start);
 
-                Log.e("Lang", lang);
-
                 toiletLocation.setLatitude(Float.parseFloat(lang));
                 toiletLocation.setLongitude(Float.parseFloat(getrennt[counter * 4 + 1]));
                 Location currentLoc = locationManager.getLastKnownLocation(provider);
-                name[counter] = currentLoc.distanceTo(toiletLocation)+ "|" + getrennt[counter*4 + 2];
+
+                unsortMap.put((int)toiletLocation.distanceTo(currentLoc), getrennt[counter*4 + 2]+";"+lang+","+getrennt[counter * 4 + 1]);
 
             }
-            
+            Map<Integer, String> treeMap = new TreeMap<Integer, String>(
+                    new Comparator<Integer>() {
+
+                        @Override
+                        public int compare(Integer o1, Integer o2) {
+                            return o1.compareTo(o2);
+                        }
+
+                    });
+            treeMap.putAll(unsortMap);
+
+            counter=0;
+
+            for (Map.Entry<Integer, String> entry : treeMap.entrySet()) {
+                String[] tmp = entry.getValue().split(";");
+                name[counter] = tmp[0] + ": "+(entry.getKey()/1000) + "km";
+                koord[counter++] = tmp[1];
+            }
+
+
+
+
 
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
@@ -223,5 +259,19 @@ public class Toiletenfinden extends Activity implements LocationListener{
         startActivityForResult(myIntent, 0);
         return true;
 
+    }
+
+    static <K,V extends Comparable<? super V>>
+    SortedSet<Map.Entry<K,V>> entriesSortedByValues(Map<K,V> map) {
+        SortedSet<Map.Entry<K,V>> sortedEntries = new TreeSet<Map.Entry<K,V>>(
+                new Comparator<Map.Entry<K,V>>() {
+                    @Override public int compare(Map.Entry<K,V> e1, Map.Entry<K,V> e2) {
+                        int res = e1.getValue().compareTo(e2.getValue());
+                        return res != 0 ? res : 1;
+                    }
+                }
+        );
+        sortedEntries.addAll(map.entrySet());
+        return sortedEntries;
     }
 }
