@@ -33,7 +33,7 @@ public class LauncherActivity extends Activity {
 
         appList.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        appList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -43,7 +43,7 @@ public class LauncherActivity extends Activity {
                 switch (item){
                     case "Telefon":
                         Intent intent = new Intent(Intent.ACTION_CALL);
-                        startActivity(intent)
+                        startActivity(intent);
                         break;
                     case "DB-Navigator":
                         break;
