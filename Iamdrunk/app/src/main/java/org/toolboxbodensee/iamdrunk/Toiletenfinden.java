@@ -29,7 +29,7 @@ public class Toiletenfinden extends ActionBarActivity {
             "Android Example List View"
     };
 
-    ArrayAdapter<String> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class Toiletenfinden extends ActionBarActivity {
         loadDB();
         listView = (ListView)findViewById(R.id.listToilette);
 
-        adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
 
@@ -84,9 +84,9 @@ public class Toiletenfinden extends ActionBarActivity {
             textView.setText(text);*/
 
             String[] getrennt = text.split(",");
-            adapter.clear();
+            /*adapter.clear();
             for(int counter=0; counter<getrennt.length-3; counter+=4)
-                adapter.add(getrennt[counter]+getrennt[counter+1]+getrennt[counter+2]+getrennt[counter+3]);
+                adapter.add(getrennt[counter]+getrennt[counter+1]+getrennt[counter+2]+getrennt[counter+3]);*/
 
 
         }
