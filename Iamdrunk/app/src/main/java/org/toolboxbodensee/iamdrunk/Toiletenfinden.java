@@ -48,10 +48,10 @@ public class Toiletenfinden extends Activity {
                                     long id) {
 
                 String item = ((TextView) view).getText().toString();
-                String x_koord = getrennt[position*4];
-                String y_koord = getrennt[position*4+1];
+                String y_koord = getrennt[position*4];
+                String x_koord = getrennt[position*4+1];
 
-                String url = "https://www.google.de/maps/@"+x_koord+","+y_koord+",20z";
+                String url = "https://www.google.de/maps/@"+y_koord+","+x_koord+",20z";
                 Log.e("URL", url);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
