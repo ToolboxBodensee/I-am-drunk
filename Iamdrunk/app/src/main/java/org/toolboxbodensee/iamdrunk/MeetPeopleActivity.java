@@ -234,6 +234,12 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+        try {
+            String latLonStr = location.getLatitude() + "," + location.getLongitude();
+            KitClient.getInstance(this).getDiscoveryServices().setP2pDiscoveryInfo(latLonStr.getBytes());
+        } catch (InfoTooLongException e) {
+            Log.d("p", "P2pListener | The discovery info is too long");
+        }
     }
 
     @Override
