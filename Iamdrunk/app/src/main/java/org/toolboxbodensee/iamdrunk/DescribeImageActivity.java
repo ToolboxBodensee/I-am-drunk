@@ -78,8 +78,10 @@ public class DescribeImageActivity extends Activity {
         TextView txt = (TextView)findViewById(R.id.desc_label);
 
         for (Tag tag : results.get(0).getTags()) {
-            if(input.getText().toString().contains(tag.getName())) 
+            Log.e("tool", tag.getName());
+            if(input.getText().toString().contains(tag.getName())) {
                 success = true;
+            }
 
         }
         input.setText("");
@@ -146,7 +148,6 @@ public class DescribeImageActivity extends Activity {
         @Override
         protected void onPostExecute (Object o){
             super.onPostExecute(o);
-            try {
                 JSONArray jsonArray = null;
                 JSONObject jsonObject = null;
                 try {
@@ -161,10 +162,6 @@ public class DescribeImageActivity extends Activity {
                     link = jsonArray.getJSONObject(zielindex).get("link").toString();
                     new BMPConnection().execute();
                 } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                new BMPConnection().execute();
-            } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
 
