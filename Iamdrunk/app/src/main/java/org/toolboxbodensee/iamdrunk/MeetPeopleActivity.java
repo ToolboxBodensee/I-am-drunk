@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -37,26 +39,19 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
     private LocationManager locationManager;
     private String provider;
-    ListView listView;
-    ArrayAdapter<String> adapter;
-    String[] values = new String[] { "Android List View",
-            "Adapter implementation",
-            "Simple List View In Android",
-            "Create List View Android",
-            "Android Example",
-            "List View Source Code",
-            "List View Array Adapter",
-            "Android Example List View"
-    };
-
-
-    ArrayList<String[]> devices = new ArrayList<String[]>();
+    String[] lViewText = new String[20];
+    Location[] devicesLocations = new Location[20];
+    String[] devicesNodeID = new String[20];
+    ListView devicesList;
+    Location currentLocation;
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meet_people);
-        enableKit();locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        enableKit();
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Define the criteria how to select the locatioin provider -> use
         // default
         Criteria criteria = new Criteria();
@@ -68,10 +63,19 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
             System.out.println("Provider " + provider + " has been selected.");
             onLocationChanged(location);
         }
-        listView = (ListView) findViewById(R.id.meet_people_list);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, getDeviceString(devices));
-
-        listView.setAdapter(adapter);
+        for(int i = 0; i < lViewText.length; i++)
+            lViewText[i] = "";
+        Button refresh = (Button)findViewById(R.id.meet_refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Location currentLoc = locationManager.getLastKnownLocation(provider);
+                currentLocation = currentLoc;
+            }
+        });
+        devicesList = (ListView) findViewById(R.id.devicesList);
+        adapter = new ArrayAdapter(this, R.layout.simple_list_item, lViewText);
+        devicesList.setAdapter(adapter);
 
     }
 
@@ -188,11 +192,40 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
             if (colorBytes != null ) {
                 Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " with color: " + new String(colorBytes));
-                updateDevices(peer.getNodeId().toString(), colorBytes.toString());
-                adapter.notifyDataSetChanged();
+                for(int i = 0; i < lViewText.length; i++)
+                {
+
+                    if(devicesNodeID[i] == peer.getNodeId().toString())
+                        i = lViewText.length;
+                    else if(devicesNodeID[i] == null)
+                    {
+                        devicesNodeID[i] = peer.getNodeId().toString();
+                        Location l = new Location("Point "+i);
+                        String latLonSplit[] = new String(peer.getDiscoveryInfo()).split(",");
+                        l.setLatitude(Double.parseDouble(latLonSplit[0]));
+                        l.setLongitude(Double.parseDouble(latLonSplit[1]));
+                        devicesLocations[i] = l;
+                        lViewText[i] = l.distanceTo(currentLocation) + "m Entfernung";
+                        adapter.notifyDataSetChanged();
+                        i = lViewText.length;
+                    }
+                }
 
             } else {
                 Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " without color");
+                for(int i = 0; i < lViewText.length; i++)
+                {
+
+                    if(devicesNodeID[i] == peer.getNodeId().toString())
+                        i = lViewText.length;
+                    else if(devicesNodeID[i] == null)
+                    {
+                        devicesNodeID[i] = peer.getNodeId().toString();
+                        lViewText[i] = "unbekannte Entfernung";
+                        adapter.notifyDataSetChanged();
+                        i = lViewText.length;
+                    }
+                }
             }
         }
 
@@ -203,17 +236,19 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
         @Override
         public void onPeerUpdatedDiscoveryInfo(Peer peer) {
-            byte[] colorBytes = peer.getDiscoveryInfo();
-            String s="";
-            for(int i = 0; i < colorBytes.length; i ++)
-            {
-                s += (char)colorBytes[i];
-            }
-            if (colorBytes != null) {
-                Log.d("p", "P2pListener | Peer updated: " + peer.getNodeId() + " with new info: " + s);
-                updateDevices(peer.getNodeId().toString(), new String(colorBytes));
-                adapter.notifyDataSetChanged();
-            }
+            int i;
+            for(i = 0; i < lViewText.length; i++)
+                if(devicesNodeID[i] == peer.getNodeId().toString())
+                    break;
+            Location l = new Location("Point "+i);
+            String latLonSplit[] = new String(peer.getDiscoveryInfo()).split(",");
+            l.setLatitude(Double.parseDouble(latLonSplit[0]));
+            l.setLongitude(Double.parseDouble(latLonSplit[1]));
+            if(i == 20)
+                i=19;
+            devicesLocations[i] = l;
+            lViewText[i] = l.distanceTo(currentLocation) + "m Entfernung";
+            adapter.notifyDataSetChanged();
         }
     };
 
@@ -234,11 +269,19 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+        currentLocation = location;
+        for(int i = 0; i < lViewText.length; i++) {
+            if(devicesLocations[i]!=null) {
+                Location l = devicesLocations[i];
+                lViewText[i] = l.distanceTo(currentLocation) + "m Entfernung";
+                adapter.notifyDataSetChanged();
+            }
+        }
+        String latLonStr = currentLocation.getLatitude() + "," + currentLocation.getLongitude();
         try {
-            String latLonStr = location.getLatitude() + "," + location.getLongitude();
             KitClient.getInstance(this).getDiscoveryServices().setP2pDiscoveryInfo(latLonStr.getBytes());
         } catch (InfoTooLongException e) {
-            Log.d("p", "P2pListener | The discovery info is too long");
+            e.printStackTrace();
         }
     }
 
@@ -261,29 +304,10 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
                 Toast.LENGTH_SHORT).show();
     }
 
-    void updateDevices(String id, String coordinates)
-    {
-        for(int i = 0; i < devices.size(); i++)
-        {
-            if(devices.get(i)[0] == "id")
-            {
-                String[] device = {id, coordinates};
-                devices.set(i, device);
-                return;
-            }
-        }
-        String[] device = {id, coordinates};
-        devices.add(device);
 
-    }
 
-    String[] getDeviceString(ArrayList<String[]> list)
-    {
-        String[] array = new String[list.size()];
-        for (int i = 0; i< list.size(); i++)
-        {
-            array[i] = list.get(i)[1];
-        }
-        return array;
-    }
+
+
+
+
 }
