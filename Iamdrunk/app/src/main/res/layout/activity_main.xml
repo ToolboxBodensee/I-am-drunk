@@ -39,8 +39,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Finde die nächste öffentliche Toilette"
-                    android:id="@+id/textView2" />
+                    android:text="Toilettensuche"
+                    android:id="@+id/textView2"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="5dp"
@@ -61,8 +62,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Promille Rechner"
-                    android:id="@+id/textView3" />
+                    android:text="Promillerechner"
+                    android:id="@+id/textView3"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="5dp"
@@ -82,7 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Finde betrunkene Menschen in der Nähe"
-                    android:id="@+id/textView4" />
+                    android:id="@+id/textView4"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="5dp"
@@ -102,8 +105,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Liegestützen Test"
-                    android:id="@+id/textView5" />
+                    android:text="Liegestützentest"
+                    android:id="@+id/textView5"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="5dp"
@@ -124,7 +128,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Reaktionstest"
-                    android:id="@+id/textView7" />
+                    android:id="@+id/textView7"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="5dp"
@@ -145,8 +150,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gerade laufen"
-                    android:id="@+id/textView9" />
+                    android:text="Torkeltest"
+                    android:id="@+id/textView9"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
             </LinearLayout>
 
 
