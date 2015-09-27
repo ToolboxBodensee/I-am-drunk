@@ -11,10 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import ch.uepaa.p2pkit.ConnectionCallbacks;
@@ -33,6 +37,20 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
     private LocationManager locationManager;
     private String provider;
+    ListView listView;
+    ArrayAdapter<String> adapter;
+    String[] values = new String[] { "Android List View",
+            "Adapter implementation",
+            "Simple List View In Android",
+            "Create List View Android",
+            "Android Example",
+            "List View Source Code",
+            "List View Array Adapter",
+            "Android Example List View"
+    };
+
+
+    ArrayList<String[]> devices = new ArrayList<String[]>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +68,11 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
             System.out.println("Provider " + provider + " has been selected.");
             onLocationChanged(location);
         }
+        listView = (ListView) findViewById(R.id.meet_people_list);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, getDeviceString(devices));
+
+        listView.setAdapter(adapter);
+
     }
 
     /* Request updates at startup */
@@ -176,13 +199,12 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
         @Override
         public void onPeerDiscovered(final Peer peer) {
             byte[] colorBytes = peer.getDiscoveryInfo();
-            String s="";
-            for(int i = 0; i < colorBytes.length; i ++)
-            {
-                s += (char)colorBytes[i];
-            }
+
             if (colorBytes != null ) {
-                Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " with color: " + s);
+                Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " with color: " + colorBytes.toString());
+                updateDevices(peer.getNodeId().toString(), colorBytes.toString());
+                adapter.notifyDataSetChanged();
+
             } else {
                 Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " without color");
             }
@@ -203,6 +225,8 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
             }
             if (colorBytes != null) {
                 Log.d("p", "P2pListener | Peer updated: " + peer.getNodeId() + " with new info: " + s);
+                updateDevices(peer.getNodeId().toString(), colorBytes.toString());
+                adapter.notifyDataSetChanged();
             }
         }
     };
@@ -262,5 +286,31 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
     public void onProviderDisabled(String provider) {
         Toast.makeText(this, "Disabled provider " + provider,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    void updateDevices(String id, String coordinates)
+    {
+        for(int i = 0; i < devices.size(); i++)
+        {
+            if(devices.get(i)[0] == "id")
+            {
+                String[] device = {id, coordinates};
+                devices.set(i, device);
+                return;
+            }
+        }
+        String[] device = {id, coordinates};
+        devices.add(device);
+
+    }
+
+    String[] getDeviceString(ArrayList<String[]> list)
+    {
+        String[] array = new String[list.size()];
+        for (int i = 0; i< list.size(); i++)
+        {
+            array[i] = list.get(i)[1];
+        }
+        return array;
     }
 }
