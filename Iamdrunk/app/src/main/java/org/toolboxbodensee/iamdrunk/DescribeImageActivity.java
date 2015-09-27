@@ -78,8 +78,10 @@ public class DescribeImageActivity extends Activity {
         TextView txt = (TextView)findViewById(R.id.desc_label);
 
         for (Tag tag : results.get(0).getTags()) {
-            if(input.getText().toString().contains(tag.getName())) 
+            Log.e("tool", tag.getName());
+            if(input.getText().toString().contains(tag.getName())) {
                 success = true;
+            }
 
         }
         input.setText("");
