@@ -1,6 +1,8 @@
 package org.toolboxbodensee.iamdrunk;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,12 +19,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class DescribeImageActivity extends Activity {
 
 
-
+    String link ="";
     OkHttpClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public class DescribeImageActivity extends Activity {
         setContentView(R.layout.activity_describe_image);
         client = new OkHttpClient();
 
-        new Connection().execute();
+        new LinkConnection().execute();
     }
 
 
@@ -49,6 +54,24 @@ public class DescribeImageActivity extends Activity {
         return true;
     }
 
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
+    }
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -63,7 +86,7 @@ public class DescribeImageActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    private class Connection extends AsyncTask {
+    private class LinkConnection extends AsyncTask {
         String data;
         @Override
         protected Object doInBackground(Object[] params) {
@@ -76,36 +99,43 @@ public class DescribeImageActivity extends Activity {
             return null;
         }
 
-            @Override
-            protected void onPostExecute (Object o){
-                super.onPostExecute(o);
-                Log.e("jfjhg", "ssss");
-                JSONArray jsonArray = null;
-                JSONObject jsonObject = null;
-                Log.e("jfjhg", "dddd");
-                try {
-                    Log.e("jfjhg", "ffff");
-                    jsonObject = new JSONObject(data);
-                    jsonArray = jsonObject.getJSONArray("data");
-                    Log.e("jfjhg", jsonArray.toString());
-                    Log.e("jfjhg", "gggg");
-                } catch (JSONException e) {
-                    Log.e("jfjhg", "hhhh");
-                    e.printStackTrace();
-                }
-
-                Log.e("jfjhg", "jjjj");
-                Log.e("jfjhg", jsonArray.length() + "");
-                int zielindex = (int) (Math.random() * jsonArray.length());
-                try {
-                    Log.e("jfjhg", jsonArray.getJSONObject(zielindex).get("link").toString());
-                    ImageView img = (ImageView)findViewById(R.id.desc_image);
-                    //img.setImageBitmap(jsonArray.getJSONObject(zielindex).get("link").toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        @Override
+        protected void onPostExecute (Object o){
+            super.onPostExecute(o);
+            JSONArray jsonArray = null;
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(data);
+                jsonArray = jsonObject.getJSONArray("data");
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+            int zielindex = (int) (Math.random() * jsonArray.length());
+            try {
+                link = jsonArray.getJSONObject(zielindex).get("link").toString();
+                new BMPConnection().execute();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            new BMPConnection().execute();
         }
+    }private class BMPConnection extends AsyncTask {
+        Bitmap bmp;
+        @Override
+        protected Object doInBackground(Object[] params) {
+            bmp = getBitmapFromURL(link);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute (Object o){
+            super.onPostExecute(o);
+
+                ImageView img = (ImageView)findViewById(R.id.desc_image);
+                img.setImageBitmap(bmp);
+        }
+    }
 
 }
 
