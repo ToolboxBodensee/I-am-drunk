@@ -244,8 +244,6 @@ public class Toiletenfinden extends Activity implements LocationListener{
 
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressLoad);
             progressBar.setVisibility(View.INVISIBLE);
-
-
         }
 
         protected void onProgressUpdate(Integer... progress) {
