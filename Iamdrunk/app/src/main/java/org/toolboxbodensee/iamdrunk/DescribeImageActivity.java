@@ -146,7 +146,6 @@ public class DescribeImageActivity extends Activity {
         @Override
         protected void onPostExecute (Object o){
             super.onPostExecute(o);
-            try {
                 JSONArray jsonArray = null;
                 JSONObject jsonObject = null;
                 try {
@@ -161,10 +160,6 @@ public class DescribeImageActivity extends Activity {
                     link = jsonArray.getJSONObject(zielindex).get("link").toString();
                     new BMPConnection().execute();
                 } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                new BMPConnection().execute();
-            } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
 

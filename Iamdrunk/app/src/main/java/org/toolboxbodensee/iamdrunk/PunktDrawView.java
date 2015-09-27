@@ -63,7 +63,7 @@ public class PunktDrawView extends View implements View.OnTouchListener{
         if(y > this.getHeight()-150)
             y = -50;
         else if(y < -50)
-            y = this.getHeight()-1501 ;
+            y = this.getHeight()-150 ;
         counter += 0.001;
     }
     @Override
