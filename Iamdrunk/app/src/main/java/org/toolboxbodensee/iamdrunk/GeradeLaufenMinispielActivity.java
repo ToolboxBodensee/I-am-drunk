@@ -87,8 +87,15 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
                 Log.d("game", correctMeasurementsPercent() + "");
                 startbutton.setEnabled(true);
 
-                if(correctMeasurementsPercent()<10)
+                TextView textView = (TextView)findViewById(R.id.textViewboolres);
+
+                if(correctMeasurementsPercent()<10){
+                    textView.setText("Du bist noch nüchtern!");
                     launchAppChooser();
+                }
+                else
+                    textView.setText("Du bist betrunken!");
+
             }
         };
         countDownTimer.start();
