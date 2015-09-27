@@ -27,6 +27,7 @@ dependencies {
     compile 'ch.uepaa.p2p:p2pkit-android:1.0.3'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.squareup.okio:okio:1.6.0'
+    compile "com.clarifai:clarifai-api-java:1.1.0"
 }
 
 

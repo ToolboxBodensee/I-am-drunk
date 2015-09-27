@@ -6,50 +6,38 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="org.toolboxbodensee.iamdrunk.DescribeImageActivity">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/descimage_progress"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/desc_image"
-        android:layout_alignRight="@+id/descimage_progress"
-        android:layout_alignEnd="@+id/descimage_progress"
-        android:layout_marginRight="229dp"
-        android:layout_marginEnd="229dp"
-        android:layout_below="@+id/descimage_progress" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/desc_input" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/desc_input"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/desc_label"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gib 3 Begriffe ein die du auf dem Bild siehst"
+        android:text="Gib einen Gegenstand an den du auf dem Bild siehst"
         android:id="@+id/desc_label"
-        android:layout_below="@+id/desc_input"
-        android:layout_toRightOf="@+id/desc_input"
-        android:layout_toEndOf="@+id/desc_input"
-        android:layout_marginTop="59dp" />
+        android:layout_above="@+id/desc_button"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter"
         android:id="@+id/desc_button"
-        android:layout_below="@+id/desc_label"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="enterPress" />
 
 </RelativeLayout>
