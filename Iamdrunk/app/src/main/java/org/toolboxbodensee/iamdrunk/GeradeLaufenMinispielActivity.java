@@ -1,6 +1,7 @@
 package org.toolboxbodensee.iamdrunk;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -85,6 +86,9 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
                 score.setText(Math.round(correctMeasurementsPercent() * 100) + "");
                 Log.d("game", correctMeasurementsPercent() + "");
                 startbutton.setEnabled(true);
+
+                if(correctMeasurementsPercent()<10)
+                    launchAppChooser();
             }
         };
         countDownTimer.start();
@@ -140,5 +144,12 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void launchAppChooser() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

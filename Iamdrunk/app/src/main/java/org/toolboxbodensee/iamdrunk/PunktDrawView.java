@@ -3,7 +3,9 @@ package org.toolboxbodensee.iamdrunk;
 /**
  * Created by simon on 26.09.15.
  */
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,6 +19,7 @@ public class PunktDrawView extends View implements View.OnTouchListener{
     Paint paint = new Paint();
     double speed = 0.8;
     double counter = 0;
+    boolean first = true;
 
     double a2x = 0,  a2y = 0;
     double ax = 0,  ay = 0;
@@ -84,8 +87,14 @@ public class PunktDrawView extends View implements View.OnTouchListener{
             {
                 canvas.drawText("Du bist zu betrunken" + timer, 100, 300, paint);
             }
-            else
+            else{
                 canvas.drawText("Du bist noch nüchtern!", 50,300,paint );
+                if(first) {
+                    launchAppChooser();
+                    first=false;
+                }
+            }
+
             timer = 0;
         }
         try {
@@ -106,5 +115,12 @@ public class PunktDrawView extends View implements View.OnTouchListener{
 
         }
         return true;
+    }
+
+    private void launchAppChooser() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.getContext().startActivity(intent);
     }
 }

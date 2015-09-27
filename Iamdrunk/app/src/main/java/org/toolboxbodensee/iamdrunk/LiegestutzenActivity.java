@@ -2,6 +2,7 @@ package org.toolboxbodensee.iamdrunk;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -34,10 +35,13 @@ public class LiegestutzenActivity extends Activity implements SensorEventListene
         SharedPreferences settings = getSharedPreferences("LiegestutzenConfig", 0);
         int limit = settings.getInt("anzahl", 10);
         Button btnFertig = (Button)findViewById(R.id.btnFertig);
-        if(counter<limit)
+        if(counter<limit) {
             btnFertig.setText("Du bist betrunken!");
-        else
+        }
+        else {
             btnFertig.setText("Du bist noch nüchtern!");
+            launchAppChooser();
+        }
 
 
         counter=0;
@@ -63,5 +67,12 @@ public class LiegestutzenActivity extends Activity implements SensorEventListene
         if (event.values[0] == 0) {
             txtcount.setText(Integer.toString(counter++));
         }
+    }
+
+    private void launchAppChooser() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
