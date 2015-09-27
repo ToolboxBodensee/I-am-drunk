@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
         LinearLayout liegestutzen = (LinearLayout)findViewById(R.id.liegestutzen);
         LinearLayout punktantippen = (LinearLayout) findViewById(R.id.punktantippen);
         LinearLayout geradelaufen = (LinearLayout)findViewById(R.id.geradelaufen);
+        LinearLayout bildbeschreiben = (LinearLayout)findViewById(R.id.bildbeschreiben);
         toilette.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +64,20 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), GeradeLaufenMinispielActivity.class);
+                startActivity(intent);
+            }
+        });
+        geradelaufen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), GeradeLaufenMinispielActivity.class);
+                startActivity(intent);
+            }
+        });
+        bildbeschreiben.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), DescribeImageActivity.class);
                 startActivity(intent);
             }
         });
