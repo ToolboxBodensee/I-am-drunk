@@ -65,14 +65,6 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
         }
         for(int i = 0; i < lViewText.length; i++)
             lViewText[i] = "";
-        Button refresh = (Button)findViewById(R.id.meet_refresh);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Location currentLoc = locationManager.getLastKnownLocation(provider);
-                currentLocation = currentLoc;
-            }
-        });
         devicesList = (ListView) findViewById(R.id.devicesList);
         adapter = new ArrayAdapter(this, R.layout.simple_list_item, lViewText);
         devicesList.setAdapter(adapter);
@@ -205,7 +197,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
                         l.setLatitude(Double.parseDouble(latLonSplit[0]));
                         l.setLongitude(Double.parseDouble(latLonSplit[1]));
                         devicesLocations[i] = l;
-                        lViewText[i] = l.distanceTo(currentLocation) + "m Entfernung";
+                        lViewText[i] = "Ein Nutzer in der Nähe";
                         adapter.notifyDataSetChanged();
                         i = lViewText.length;
                     }
@@ -221,7 +213,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
                     else if(devicesNodeID[i] == null)
                     {
                         devicesNodeID[i] = peer.getNodeId().toString();
-                        lViewText[i] = "unbekannte Entfernung";
+                        lViewText[i] = "Ein Nutzer in der Nähe";
                         adapter.notifyDataSetChanged();
                         i = lViewText.length;
                     }
@@ -236,7 +228,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
         @Override
         public void onPeerUpdatedDiscoveryInfo(Peer peer) {
-            int i;
+          /*  int i;
             for(i = 0; i < lViewText.length; i++)
                 if(devicesNodeID[i] == peer.getNodeId().toString())
                     break;
@@ -248,7 +240,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
                 i=19;
             devicesLocations[i] = l;
             lViewText[i] = l.distanceTo(currentLocation) + "m Entfernung";
-            adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();*/
         }
     };
 
@@ -269,7 +261,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        currentLocation = location;
+        /*currentLocation = location;
         for(int i = 0; i < lViewText.length; i++) {
             if(devicesLocations[i]!=null) {
                 Location l = devicesLocations[i];
@@ -282,7 +274,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
             KitClient.getInstance(this).getDiscoveryServices().setP2pDiscoveryInfo(latLonStr.getBytes());
         } catch (InfoTooLongException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override

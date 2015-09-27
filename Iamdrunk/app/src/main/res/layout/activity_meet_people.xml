@@ -20,15 +20,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/devicesList"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/meet_refresh" />
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="aktualisieren"
-        android:id="@+id/meet_refresh"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/devicesList"
-        android:layout_alignEnd="@+id/devicesList" />
+
 </RelativeLayout>

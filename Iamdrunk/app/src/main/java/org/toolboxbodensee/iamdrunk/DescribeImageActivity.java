@@ -77,12 +77,17 @@ public class DescribeImageActivity extends Activity {
         boolean success = false;
         TextView txt = (TextView)findViewById(R.id.desc_label);
 
-        for (Tag tag : results.get(0).getTags()) {
-            Log.e("tool", tag.getName());
-            if(input.getText().toString().contains(tag.getName())) {
-                success = true;
-            }
+        try {
+            for (Tag tag : results.get(0).getTags()) {
+                Log.e("tool", tag.getName());
+                if (input.getText().toString().contains(tag.getName())) {
+                    success = true;
+                }
 
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            success = true;
         }
         input.setText("");
         if (success) {
@@ -156,14 +161,21 @@ public class DescribeImageActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                int zielindex = (int) (Math.random() * jsonArray.length());
+                int zielindex;
+                try {
+                    zielindex = (int) (Math.random() * jsonArray.length());
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                    zielindex = 1;
+                }
                 try {
                     link = jsonArray.getJSONObject(zielindex).get("link").toString();
-                    new BMPConnection().execute();
-                } catch (JSONException e) {
+                } catch (Exception e) {
+                    link = "https://www.petfinder.com/wp-content/uploads/2012/11/122163343-conditioning-dog-loud-noises-632x475.jpg";
                     e.printStackTrace();
                 }
+            new BMPConnection().execute();
 
         }
     }

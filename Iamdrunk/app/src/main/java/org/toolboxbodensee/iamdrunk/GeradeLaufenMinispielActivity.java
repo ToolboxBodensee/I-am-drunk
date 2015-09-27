@@ -89,7 +89,7 @@ public class GeradeLaufenMinispielActivity extends Activity implements SensorEve
 
                 TextView textView = (TextView)findViewById(R.id.textViewboolres);
 
-                if(correctMeasurementsPercent()<10){
+                if(correctMeasurementsPercent() * 100 <10){
                     textView.setText("Du bist noch nüchtern!");
                     launchAppChooser();
                 }
