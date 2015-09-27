@@ -117,7 +117,6 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
 
 
                 startP2pDiscovery();
-                startGeoDiscovery();
             }
 
 
@@ -175,19 +174,6 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
             Log.d("p", "P2pListener removed");
         }
 
-        private void startGeoDiscovery() {
-            KitClient.getInstance(this).getMessageServices().addListener(mMessageListener);
-
-            KitClient.getInstance(this).getDiscoveryServices().addListener(mGeoDiscoveryListener);
-        }
-
-        private void stopGeoDiscovery() {
-            KitClient.getInstance(this).getMessageServices().removeListener(mMessageListener);
-            Log.d("p", "MessageListener removed");
-
-            KitClient.getInstance(this).getDiscoveryServices().removeListener(mGeoDiscoveryListener);
-            Log.d("p", "GeoListener removed");
-        }
 
     private final P2pListener mP2pDiscoveryListener = new P2pListener() {
 
@@ -201,7 +187,7 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
             byte[] colorBytes = peer.getDiscoveryInfo();
 
             if (colorBytes != null ) {
-                Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " with color: " + colorBytes.toString());
+                Log.d("p", "P2pListener | Peer discovered: " + peer.getNodeId() + " with color: " + new String(colorBytes));
                 updateDevices(peer.getNodeId().toString(), colorBytes.toString());
                 adapter.notifyDataSetChanged();
 
@@ -225,32 +211,13 @@ public class MeetPeopleActivity extends Activity implements LocationListener {
             }
             if (colorBytes != null) {
                 Log.d("p", "P2pListener | Peer updated: " + peer.getNodeId() + " with new info: " + s);
-                updateDevices(peer.getNodeId().toString(), colorBytes.toString());
+                updateDevices(peer.getNodeId().toString(), new String(colorBytes));
                 adapter.notifyDataSetChanged();
             }
         }
     };
 
-    private final GeoListener mGeoDiscoveryListener = new GeoListener() {
 
-        @Override
-        public void onStateChanged(final int state) {
-            Log.d("p","GeoListener | State changed: " + state);
-        }
-
-        @Override
-        public void onPeerDiscovered(final UUID nodeId) {
-            Log.d("p","GeoListener | Peer discovered: " + nodeId);
-
-            // sending a message to the peer
-            KitClient.getInstance(MeetPeopleActivity.this).getMessageServices().sendMessage(nodeId, "SimpleChatMessage", "From Android: Hello GEO!".getBytes());
-        }
-
-        @Override
-        public void onPeerLost(final UUID nodeId) {
-            Log.d("p","GeoListener | Peer lost: " + nodeId);
-        }
-    };
 
     private final MessageListener mMessageListener = new MessageListener() {
 
