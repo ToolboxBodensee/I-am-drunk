@@ -87,18 +87,7 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, Toiletenfinden.class);
-            startActivity(intent);
-            return true;
-        }
-        if (id == R.id.action_promille) {
-            Intent intent = new Intent(this, PromilleRechnerActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        if (id == R.id.action_discover) {
-            Intent intent = new Intent(this, MeetPeopleActivity.class);
-            startActivity(intent);
+            
             return true;
         }
         if (id == R.id.action_launcher) {
