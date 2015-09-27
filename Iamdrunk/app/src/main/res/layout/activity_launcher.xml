@@ -13,5 +13,16 @@
         android:id="@+id/appList"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/buttonDefault" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Setzte Launcher als Default"
+        android:id="@+id/buttonDefault"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="setDefault"
+        android:nestedScrollingEnabled="true" />
 </RelativeLayout>

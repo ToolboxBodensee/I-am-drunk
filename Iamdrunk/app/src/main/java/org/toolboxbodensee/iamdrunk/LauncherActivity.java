@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,10 +26,15 @@ public class LauncherActivity extends Activity {
             "Browser"
     };
 
+    Button defaultButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        defaultButton = (Button)findViewById(R.id.buttonDefault);
+        defaultButton.setVisibility(isMyAppLauncherDefault()?View.INVISIBLE:View.VISIBLE);
 
         appList = (ListView)findViewById(R.id.appList);
 
@@ -62,6 +68,8 @@ public class LauncherActivity extends Activity {
         });
     }
 
+
+
     private boolean isMyAppLauncherDefault() {
         final IntentFilter filter = new IntentFilter(Intent.ACTION_MAIN);
         filter.addCategory(Intent.CATEGORY_HOME);
@@ -81,6 +89,11 @@ public class LauncherActivity extends Activity {
             }
         }
         return false;
+    }
+
+    public void setDefault(View v){
+        launchAppChooser();
+        defaultButton.setVisibility(View.INVISIBLE);
     }
 
     private void launchAppChooser() {
